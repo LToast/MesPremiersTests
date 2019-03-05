@@ -18,11 +18,12 @@ test.each(
 //includes
 test.each(
     [[1, 3, 2,4, false],
-        [2, 6, 1,3, true],
+        [2, 6, 1,3, false],
+        [2, 6, 2,3, false],
         [0, 3, 3,6, false],
         [-1, 8, 6,4, true]])(
-    'interval(%i, %i) intersept interval (%i,%i) %p',
+    'interval(%i, %i) includes interval (%i,%i) %p',
     (a, b,c,d, expected) => {
-        expect((new Interval(a,b)).overlaps(new Interval(c,d))).toBe(expected);
+        expect((new Interval(a,b)).includes(new Interval(c,d))).toBe(expected);
     },
 );
