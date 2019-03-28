@@ -30,7 +30,7 @@ test.each(
     },
 );
 //union
-/*
+
 test.each(
     [[1, 3, 2,4, [[new Interval(1,4)]]],
         [2, 6, 1,3, [[new Interval(1,6)]]],
@@ -43,6 +43,6 @@ test.each(
         [-1, 8, 6,4, [[new Interval(-1,8)]]]])(
     'interval(%i, %i) union interval (%i,%i) %p',
     (a, b,c,d, expected) => {
-        expect.forEach(function(element){}((new Interval(a,b)).union(new Interval(c,d))).toEqual(expected);
+        expect((new Interval(a,b)).union(new Interval(c,d))).toBe(expected);
     },
-);*/
+);
