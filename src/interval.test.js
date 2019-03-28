@@ -32,17 +32,19 @@ test.each(
 //union
 
 test.each(
-    [[1, 3, 2,4, [[new Interval(1,4)]]],
-        [2, 6, 1,3, [[new Interval(1,6)]]],
-        [2, 6, 2,3, [[new Interval(2,6)]]],
-        [2, 3, 2,3, [[new Interval(2,3)]]],
-        [1, 2, 4,5, [[new Interval(1,2)],[new Interval(4,5)]]],
-        [0, 3, 3,6, [[new Interval(0,6)]]],
-        [3, 6, 0,3, [[new Interval(0,6)]]],
-        [0, 3, 5,6, [[new Interval(0,3)],[new Interval(5,6)]]],
-        [-1, 8, 6,4, [[new Interval(-1,8)]]]])(
+     [[1, 2, 3,4, [new Interval(1,2),new Interval(3,4)]],
+        [2, 6, 1,3, [new Interval(1,6)]],
+        [2, 6, 2,3, [new Interval(2,6)]],
+        [2, 3, 2,3, [new Interval(2,3)]],
+        [1, 2, 4,5, [new Interval(1,2),new Interval(4,5)]],
+        [0, 3, 3,6, [new Interval(0,6)]],
+        [3, 6, 0,3, [new Interval(0,6)]],
+        [0, 3, 5,6, [new Interval(0,3),new Interval(5,6)]],
+        [-1, 8, 6,4, [new Interval(-1,8)]]])(
     'interval(%i, %i) union interval (%i,%i) %p',
     (a, b,c,d, expected) => {
-        expect((new Interval(a,b)).union(new Interval(c,d))).toBe(expected);
+        expected.forEach(function(element){
+            expect(new Interval(a,b).union(new Interval(c,d))).toContainEqual(element);
+        });
     },
 );
