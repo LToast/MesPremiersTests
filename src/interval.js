@@ -43,7 +43,7 @@ class Interval {
      * @returns {boolean}
      */
     includes(interval) {
-
+        return this.start < interval.start && this.end > interval.end;
     };
 
     /**
@@ -63,7 +63,19 @@ class Interval {
      * @returns {Interval[]}
      */
     union(interval) {
-
+        if (this.includes(interval)) { return [this] }
+        if (interval.includes(this)) { return [interval] }
+        if (!this.overlaps(interval)) {
+            if (this.end === interval.start) {
+                return [new Interval(this.start, interval.end)]
+            } else if (this.start === interval.end) {
+                return [new Interval(interval.start, this.end)] }
+            else {
+                return [this, interval] }
+        }
+        else {
+            return [(new Interval(Math.min(this.start,interval.start),Math.max(this.end,interval.end)))]
+        }
     };
 
     /**
