@@ -118,6 +118,15 @@ class Interval {
      * @returns {Interval[]}
      */
     exclusion(interval) {
+        if (!this.overlaps(interval)) return [this,interval]
+        if(this.start==interval.start && this.end==interval.end) return []
+        if (this.start==interval.start ) return new Interval(Math.min(this.end,interval.end),Math.max(this.end,interval.end))
+        if (this.end==interval.end ) return new Interval(Math.min(this.start,interval.start),Math.max(this.start,interval.start))
+
+        return [new Interval(Math.min(Math.min(this.start,this.end),Math.min(interval.start,interval.end)),
+                    Math.max(Math.min(this.start,this.end),Math.min(interval.start,interval.end))),
+            new Interval(Math.min(Math.max(this.start,this.end),Math.max(interval.start,interval.end)),
+                    Math.max(Math.max(this.start,this.end),Math.max(interval.start,interval.end)))]
 
     };
 }
