@@ -63,7 +63,28 @@ class Interval {
      * @returns {Interval[]}
      */
     union(interval) {
+        let res=[];
 
+        if (!this.overlaps(interval)){
+            for (let i=this.start;i<=this.end;i++){
+                res.push(i);
+            }
+            let start2=interval.start;
+            if (interval.start==this.end) {
+                start2+=1;
+            }
+            for (let i=start2;i<=interval.end;i++){
+                res.push(i);
+            }
+        }
+        else{
+            let start=Math.min(this.start,interval.start);
+            let end=Math.max(this.end,interval.end);
+            for (let i=start;i<=end;i++){
+                res.push(i);
+            }
+        }
+        return res;
     };
 
     /**
