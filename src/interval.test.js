@@ -77,6 +77,6 @@ test.each(
         [-1, 8, 6,4, [new Interval(-1,4),new Interval(6,8)]]])(
     'interval(%i, %i) includes interval (%i,%i) %p',
     (a, b,c,d, expected) => {
-        expect((new Interval(a,b)).intersection(new Interval(c,d))).toEqual(expected);
+        expect((new Interval(a,b)).exclusion(new Interval(c,d))).toEqual(expected);
     },
 );
