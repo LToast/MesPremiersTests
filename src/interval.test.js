@@ -56,11 +56,11 @@ test.each(
         [1, 2, 4,5, []],
         [2, 3, 2,3, new Interval(2,3)],
         [0, 3, 3,6, []],
-        [4, 5, 3,5, new Interval(3,4)],
+        [4, 5, 3,5, new Interval(4,5)],
         [0, 3, 5,6, []],
         [-1, 8, 6,4, new Interval(6,4)]])(
     'interval(%i, %i) includes interval (%i,%i) %p',
     (a, b,c,d, expected) => {
-        expect((new Interval(a,b)).intersection(new Interval(c,d))).toBe(expected);
+        expect((new Interval(a,b)).intersection(new Interval(c,d))).toEqual(expected);
     },
 );
