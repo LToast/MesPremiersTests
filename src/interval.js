@@ -63,28 +63,19 @@ class Interval {
      * @returns {Interval[]}
      */
     union(interval) {
-        let res=[];
-
-        if (!this.overlaps(interval)){
-            for (let i=this.start;i<=this.end;i++){
-                res.push(i);
-            }
-            let start2=interval.start;
-            if (interval.start==this.end) {
-                start2+=1;
-            }
-            for (let i=start2;i<=interval.end;i++){
-                res.push(i);
-            }
+        if (this.includes(interval)) { return [this] }
+        if (interval.includes(this)) { return [interval] }
+        if (!this.overlaps(interval)) {
+            if (this.end === interval.start) {
+                return [new Interval(this.start, interval.end)]
+            } else if (this.start === interval.end) {
+                return [new Interval(interval.start, this.end)] }
+            else {
+                return [this, interval] }
         }
-        else{
-            let start=Math.min(this.start,interval.start);
-            let end=Math.max(this.end,interval.end);
-            for (let i=start;i<=end;i++){
-                res.push(i);
-            }
+        else {
+            return [(new Interval(Math.min(this.start,interval.start),Math.max(this.end,interval.end)))]
         }
-        return res;
     };
 
     /**
