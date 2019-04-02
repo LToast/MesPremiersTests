@@ -10,6 +10,9 @@ test('facto 3 est 6', () => {
 test('facto too large', () => {
     expect(() => { Util.factorial(30000) }).toThrow();
 });
+test('facto negative', () => {
+    expect(() => { Util.factorial(-1) }).toThrow();
+});
 //Premier
 
 describe('isPrime', function () {

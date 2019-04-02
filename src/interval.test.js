@@ -1,4 +1,9 @@
 let Interval = require('./interval');
+//ToString
+test("toString", () => {
+        let interval = new Interval(1,2);
+        expect(interval.toString()).t("[1,2]")
+})
 //Interval
 test('1-3 et 2-4 intersect', () => {
     let int1 = new Interval(2,4);
